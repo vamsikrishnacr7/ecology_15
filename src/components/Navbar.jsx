@@ -5,7 +5,7 @@ import {TiLocationArrow} from 'react-icons/ti';
 import {useWindowScroll} from 'react-use';
 import gsap from 'gsap';
 
-const navItems = ['Hero', 'Features', 'Story', 'About', 'Contact'];
+const navItems = ['Hero', 'About', 'Cases', 'Features', 'Contact'];
 
 const Navbar = () => {
     const [isAudioPlaying, setIsAudioPlaying]  = useState(false);
@@ -62,13 +62,13 @@ const Navbar = () => {
         <header className="absolute top-1/2 w-full -translate-y-1/2">
             <nav className = "flex size-full items-center justify-between p-4">
                 <div className = "flex items-center gap-7">
-                    <img src="/img/logo.png" alt="logo" className = "w-10" />
-                    <Button 
+                    <img src= "https://img.lovepik.com/png/20230929/green-ecological-technology-nature-natural-ecology-natural-green-ecology_22961_wh1200.png" alt="logo" className = "w-10 rounded-full" />
+                    {/* <Button 
                         id = "product-button"
                         title = "Products"
                         rightIcon = {<TiLocationArrow/>}
                         containerClass = "bg-blue-50 md:flex hidden items-center justify-center gap-1"
-                    />
+                    /> */}
                 </div>
                 <div className = "flex h-full items-center">
                     <div className = "hidden md:block">
