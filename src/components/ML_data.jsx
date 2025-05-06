@@ -25,7 +25,7 @@ const buildingPercentages = [
   ["4.47%", "4.71%", "4.85%", "4.96%", "4.83%", "4.93%", "4.78%", "4.90%"],
   ["52.52%", "52.80%", "54.56%", "54.90%", "55.54%", "56.84%", "56.91%", "57.21%"],
   ["23.80%", "24.48%", "26.35%", "27.44%", "28.10%", "28.74%", "28.91%", "29.35%"],
-  ["49.79%", "50.84%", "54.06%", "55.19%", "56.32%", "57.66%", "58.01%", "58.40%"]
+  ["49.79%", "50.84%", "54.06%", "55.19%", "56.32%", "57.66%", "58.01%", "58.40%"],
 ];
 
 // Predicted percentages for 2024
@@ -40,11 +40,17 @@ const cvIndexData = [
   ["0.2714", "0.3566", "0.2157", "0.2732", "0.1919"],
   ["0.2586", "0.3690", "0.2101", "0.2516", "0.1803"],
   ["0.2918", "0.4266", "0.2147", "0.3038", "0.2025"],
-  ["0.3144", "0.3983", "0.2364", "0.3205", "0.2188"]
+  ["0.3144", "0.3983", "0.2364", "0.3205", "0.2188"],
 ];
 
 // Predicted CV Index for 2024
 const predictedCvIndex = ["0.3493", "0.4637", "0.3003", "0.3535", "0.339"];
+
+// SES Index values for 2024
+const sesIndex = [23.19, 63.03, 57.65, 64.45]; // SES Index for areas 1, 2, 3, 4
+
+// Canopy Percentage for 2024
+// const canopyPercentage = ["45%", "62%", "56%", "60%"];
 
 export default function CityMapExplorer() {
   const [selected, setSelected] = useState(null);
@@ -90,6 +96,8 @@ export default function CityMapExplorer() {
     { x: "25%", y: "75%" },
     { x: "75%", y: "75%" },
   ];
+
+  const isSesLow = (index) => sesIndex[index] < 50; // Check if SES Index is less than 50%
 
   return (
     <div className="min-h-screen bg-black text-white p-6 relative">
@@ -224,19 +232,43 @@ export default function CityMapExplorer() {
               </div>
             </div>
 
-            <img
-              src={predictionImages[selected]}
-              alt={`Predicted Year 2024`}
-              className="rounded-xl shadow-lg w-full h-72 object-cover"
-            />
+            {/* Display the SES Index and Canopy Percentage */}
+            <div className="flex justify-between items-center">
+              <div>
+                <p className="text-xl text-indigo-300">SES Index</p>
+                <p className={`text-3xl font-semibold ${isSesLow(selected) ? "text-red-400" : "text-green-300"}`}>
+                  {sesIndex[selected]}%
+                </p>
+              </div>
+              <div>
+                {/* <p className="text-xl text-indigo-300">Canopy Percentage</p>
+                <p className="text-3xl font-semibold text-green-300">
+                  {canopyPercentage[selected]}
+                </p> */}
+              </div>
+            </div>
 
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="bg-indigo-600 px-4 py-2 rounded-full shadow-lg hover:bg-indigo-700 transition-all"
-              onClick={handleFutureBack}
-            >
-              ← Back to Historical Data
-            </motion.button>
+            {/* Display Prediction Image with red overlay for low SES */}
+            <div className={`relative mt-8`}>
+              <img
+                src={predictionImages[selected]}
+                alt={`Predicted Image for Block ${selected + 1}`}
+                className="rounded-xl w-full"
+              />
+              {isSesLow(selected) && (
+                <div className="absolute inset-0 bg-red-500 opacity-30"></div>
+              )}
+            </div>
+
+            <div className="mt-10">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                className="bg-indigo-600 px-4 py-2 rounded-full shadow-lg hover:bg-indigo-700 transition-all"
+                onClick={handleFutureBack}
+              >
+                ← Back to Historical Data
+              </motion.button>
+            </div>
           </div>
         </motion.div>
       )}
