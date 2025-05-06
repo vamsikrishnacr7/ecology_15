@@ -1,13 +1,14 @@
-
-import React, { useState, useEffect } from "react";
+// Carousel.jsx
 import { motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-import hydraImg from "/img/hydra.png";
+import caseInfo from "./CaseInfo";
 import bhopalImg from "/img/bhopal.jpg";
-import neworleansImg from "/img/neworleans.jpg";
+import hydraImg from "/img/hydra.png";
 import jakartaImg from "/img/jakarta.jpg";
+import neworleansImg from "/img/neworleans.jpg";
 
 const Carousel = () => {
   const navigate = useNavigate();
@@ -16,29 +17,37 @@ const Carousel = () => {
       id: 1,
       image: hydraImg, 
       title: "Hydra", 
-      description: "This is a great product!",
-      fullContent: "Detailed content about Hydra case study..."
+      description: "Encroachment in Hyderabad and Its Disastrous Impact",
+      fullContent: `${caseInfo.hydraCase}`
+
+
     },
+
+
     { 
       id: 2,
       image: bhopalImg, 
       title: "Bhopal Tragedy", 
-      description: "This is another great product!",
-      fullContent: "Detailed content about Bhopal Tragedy..."
+      description: "The Bhopal Gas Tragedy (India, 1984) – Urban Encroachment and Human Errors Estb 1969",
+      fullContent: `${caseInfo.BhopalCase}`
     },
 
-    { id:3, 
+
+    { 
+      id: 3, 
       image: neworleansImg,
       title: "Katrina Hurricane", 
-      description: "This is an amazing product!",
-      fullContent: "Detailed content about Katrina Hurricane..."
+      description: "Hurricane Katrina & New Orleans Flooding (USA, 2005) – Wetland Encroachment",
+      fullContent: `${caseInfo.katrinaCase}`
     },
 
-    { id:4, 
-      image: jakartaImg, 
-      title: "Encroachment Jakarta", 
-      description: "This is a fantastic product!",
-      fullContent: "The catastrophic floods that submerged Indonesia's capital in January 2020 displaced over 60,000 residents and claimed 66 lives. Triggered by torrential monsoon rains (reaching 377mm/day – the heaviest since 1866), the disaster exposed systemic vulnerabilities: rapid urbanization had converted 97% of Jakarta's natural waterways into concrete channels, while land subsidence (25cm/year in North Jakarta) worsened inundation. Climate change intensified the rainfall, but human factors like deforestation in upstream Bogor and improper waste management (blocking 60% of drainage systems) turned a natural phenomenon into a humanitarian crisis. This event became a catalyst for Indonesia's controversial capital relocation plan to Nusantara, highlighting the existential threat posed by sinking megacities in the climate era."
+    {
+      id: 4,
+      image: jakartaImg,
+      title: "Encroachment Jakarta",
+      description: "Jakarta Land Subsidence Crisis (Indonesia, Ongoing) – Urban Encroachment",
+      fullContent: `${caseInfo.JakartaCase}`
+
     },
     
   ];    
